@@ -1,6 +1,6 @@
 import HeroImg from "../../public/images/hero.jpg";
 import LockIcon from "../../public/images/icons/lockicon.png";
-import CoinIcon from "../../public/images/icons/coinIcon.png";
+import CoinIcon from "../../public/images/icons/coinicon.png";
 import LocationIcon from "../../public/images/icons/locationicon.png";
 import gymIcon from "../../public/images/icons/gymicon.png";
 import HeroRoom from "../../public/images/rooms/heroroom.png";

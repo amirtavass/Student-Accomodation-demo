@@ -1,4 +1,4 @@
-import CheckIcon from "../../public/images/icons/checkIcon.png";
+import CheckIcon from "../../public/images/icons/checkicon.png";
 function BulletPoints() {
   const points = [
     {
