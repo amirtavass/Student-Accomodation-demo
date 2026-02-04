@@ -20,21 +20,19 @@ function Hero() {
       </div>
       <div className="relative z-10 mx-auto max-w-6xl px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center text-center md:text-left">
             <h1 className="text-4xl text-text-light font-bold md:text-5xl ">
               Why Book with Us?
             </h1>
             <p className="pt-4 text-text-light text-lg">
-              More than just student rooms in Bolton. Newly refurbished and
-              centrally located, The ** offers modern student living in the
-              heart of Bolton. Close to campuses, shops, and nightlife, with
-              easy rail access to Manchester, it is perfectly placed for student
-              life. Enjoy comfortable en suite rooms, on site gym and social
-              spaces, plus 24 hour concierge support to keep everything running
-              smoothly and securely.
+              More than just student rooms in Bolton
+            </p>
+            <p className="pt-2 text-text-light text-lg">
+              Newly refurbished and centrally located, The CUBE offers modern
+              student living in the heart of Bolton.
             </p>
             {/* 4 icons */}
-            <div className="mt-10 grid grid-cols-2 gap-8 md:max-w-md">
+            <div className="mt-10 grid grid-cols-2 gap-8 md:max-w-md mx-auto md:mx-0">
               {/* frist icon */}
               <div className="flex flex-col items-center text-center ">
                 <div className="flex flex-col items-center justify-center h-35 w-35 rounded-full  text-text-light  bg-accent/50">
@@ -71,13 +69,13 @@ function Hero() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col gap-8 items-start justify-center">
-            <img src={HeroRoom} />
-            <div className="flex flex-col items-start gap-5">
-              <button className=" border-4 border-accent bg-black/35 text-text-light font-bold px-3 py-4 rounded-lg flex items-center justify-between hover:bg-opacity-90">
+          <div className="flex flex-col gap-8 items-center md:items-start justify-center">
+            <img src={HeroRoom} className="hidden md:block" />
+            <div className="flex flex-col items-center md:items-start gap-5">
+              <button className="border-4 border-accent bg-black/35 text-text-light font-bold px-3 py-4 rounded-lg flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,153,0,0.5)] hover:bg-accent/20">
                 BOOK A ROOM <img src={ArrowIcon} />
               </button>
-              <button className=" border-4 border-text-light bg-black/35 text-text-light font-bold px-6 py-4 rounded-lg flex items-center justify-between  hover:bg-opacity-90">
+              <button className="border-4 border-text-light bg-black/35 text-text-light font-bold px-6 py-4 rounded-lg flex items-center justify-between cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:bg-white/10">
                 ARRANGE A VIEWING <img src={ArrowIcon} />
               </button>
             </div>

@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ArrowIcon from "../../public/images/icons/arrowicon.png";
 import CircledArrowIcon from "../../public/images/circledarrowicon.png";
 import lineImage from "../../public/images/lineImage.png";
 
 function Rooms() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  const trackRef = useRef(null);
+  const scrollRef = useRef(null);
   const rooms = [
     {
       id: 1,
@@ -39,14 +40,38 @@ function Rooms() {
     },
   ];
 
+  const maxIndex = rooms.length - 1;
+
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? rooms.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === rooms.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    const track = trackRef.current;
+    const scrollEl = scrollRef.current;
+    if (!track || !scrollEl) return;
+    const firstCard = track.querySelector("[data-room-card]");
+    if (!firstCard) return;
+
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const gap = parseFloat(
+      getComputedStyle(track).columnGap || getComputedStyle(track).gap || 0,
+    );
+
+    const scrollPosition = currentIndex * (cardWidth + gap);
+
+    // FIX 1: Use 'scrollTo' with behavior: 'smooth'
+    // This forces the browser to run the animation via JS engine,
+    // which is much more reliable than CSS property assignment.
+    scrollEl.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+  }, [currentIndex]);
   return (
     <section className="w-full py-16 bg-gray-50">
       <div className="mx-auto max-w-6xl px-4">
@@ -57,40 +82,44 @@ function Rooms() {
           <div className="flex justify-center ">
             <div className="w-40 h-2 mt-5  bg-accent"></div>
           </div>
-          <div className="flex justify-center gap-4 mt-6">
+          <div className="hidden md:flex justify-center gap-4 mt-6">
             <button
               onClick={handlePrev}
-              className="p-4  transition  hover:bg-accent"
+              className="p-4 transition-all duration-300 hover:bg-accent hover:scale-110 rounded-lg"
             >
               <img
                 src={ArrowIcon}
                 alt="Previous"
-                className="w-20 h-12 rotate-180"
+                className="w-20 h-12 rotate-180 transition-transform duration-300"
               />
             </button>
 
             <button
               onClick={handleNext}
-              className="p-4 transition hover:bg-accent"
+              className="p-4 transition-all duration-300 hover:bg-accent hover:scale-110 rounded-lg"
             >
-              <img src={ArrowIcon} alt="Next" className="w-20 h-12" />
+              <img
+                src={ArrowIcon}
+                alt="Next"
+                className="w-20 h-12 transition-transform duration-300"
+              />
             </button>
           </div>
+          {/* <div className="mt-6" /> */}
         </div>
 
-        <div className="relative overflow-hidden">
-          <div
-            className="flex transition-transform duration-500 ease-in-out gap-6"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / 3 + 2)}%)`,
-            }}
-          >
+        <div
+          className="relative  overflow-x-auto md:overflow-x-hidden pb-4 -mx-4 px-4 "
+          ref={scrollRef}
+        >
+          <div ref={trackRef} className="flex gap-6 snap-x md:snap-none ">
             {rooms.map((room) => (
               <div
                 key={room.id}
-                className="min-w-[calc(33.333%-1rem)] flex-shrink-0"
+                className="min-w-[50%] sm:min-w-[45%] lg:min-w-[32%] flex-shrink-0 snap-start"
+                data-room-card
               >
-                <div className="relative bg-bg-dark rounded-tl-[80px] rounded-br-[80px] overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-4 border-gray-800 p-4">
+                <div className="relative bg-bg-dark rounded-tl-[60px] rounded-br-[60px] overflow-hidden shadow-lg hover:shadow-xl transition-shadow border-4 border-gray-800 p-3 sm:p-4">
                   {/* line image should be background of each image card */}
                   <div className="absolute inset-0 z-0">
                     <img
@@ -98,7 +127,7 @@ function Rooms() {
                       className="w-full h-full opacity-30 object-cover object-center rounded-tl-[76px] rounded-br-[76px]"
                     />
                   </div>
-                  <div className="h-64 relative rounded-tl-[60px] rounded-br-[60px] overflow-hidden z-10">
+                  <div className="h-56 sm:h-64 relative rounded-tl-[50px] rounded-br-[50px] overflow-hidden z-10">
                     <img
                       src={room.image}
                       alt={room.title}

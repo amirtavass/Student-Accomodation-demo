@@ -1,5 +1,8 @@
 import Line1 from "../../public/images/features/line1.png";
 import Line2 from "../../public/images/features/line2.png";
+import WifiIcon from "../../public/images/icons/wifiicon.png";
+import KeyIcon from "../../public/images/icons/keyicon.png";
+import SmilyFaceIcon from "../../public/images/icons/smilefaceicon.png";
 
 function Features() {
   return (
@@ -113,24 +116,26 @@ function Features() {
                 around.
               </p>
 
-              <div className="flex gap-8 justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-3xl">🏠</span>
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center items-center sm:items-start">
+                <div className="flex flex-col items-center text-center ">
+                  <div className="flex flex-col items-center justify-center h-35 w-35 rounded-full  text-text-light  bg-bg-light/50">
+                    <img src={WifiIcon} />
+                    <span className="mt-2 font-bold text-text-dark">Wi-Fi</span>
                   </div>
-                  <p className="font-semibold text-text-dark">Wi-Fi</p>
                 </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-3xl">🔑</span>
-                  </div>
-                  <p className="font-semibold text-text-dark">Key Card</p>
+
+                <div className="flex flex-col items-center justify-center h-35 w-35 rounded-full  text-text-light  bg-bg-light/50">
+                  <img src={KeyIcon} />
+                  <span className="mt-2 font-bold text-text-dark">
+                    Key Card
+                  </span>
                 </div>
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-3xl">😊</span>
-                  </div>
-                  <p className="font-semibold text-text-dark">Social</p>
+
+                <div className="flex flex-col items-center justify-center h-35 w-35 rounded-full  text-text-light  bg-bg-light/50">
+                  <img src={SmilyFaceIcon} />
+                  <span className="mt-2 font-bold text-text-dark">
+                    Community
+                  </span>
                 </div>
               </div>
             </div>

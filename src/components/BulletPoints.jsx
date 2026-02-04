@@ -36,11 +36,11 @@ function BulletPoints() {
   return (
     <section className="w-full text-text-light px-4 py-8 bg-bg-dark">
       <div className="mx-auto max-w-6xl px-4">
-        <div className="flex flex-wrap justify-center gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {points.map((point, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 bg-bg-dark border-2 border-orange-500  px-6 py-3  transition-colors "
+              className="flex items-center justify-between gap-3 bg-bg-dark border-2 border-orange-500 px-6 py-3 w-full"
             >
               <span className="text-white font-semibold">{point.title}</span>
               <span className="text-xs text-accent">{point.icon}</span>
